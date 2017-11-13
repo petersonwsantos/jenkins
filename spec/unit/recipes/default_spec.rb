@@ -6,15 +6,6 @@
 
 require 'spec_helper'
 
-describe 'jenkins::default' do
-  context 'When all attributes are default, on an unspecified platform' do
-    let(:chef_run) do
-      runner = ChefSpec::ServerRunner.new
-      runner.converge(described_recipe)
-    end
-
-    it 'converges successfully' do
-      expect { chef_run }.to_not raise_error
-    end
-  end
+describe command('curl  http://127.0.0.1:8080') do
+  its(:stdout) { should match(/hudson.model.Hudson.Administer/) }
 end
