@@ -1,17 +1,54 @@
 ---
 driver:
-  name: vagrant
+  name: gce
+  project: virti-kitchen-185918
+  zone: us-west1-c
+  email: peterson.virti@gmail.com
+  tags:
+    - devteam
+    - test-kitchen
+  service_account_scopes:
+    - devstorage.read_write
+    - userinfo.email
 
 provisioner:
   name: chef_zero
+  always_update_cookbooks: true
 
 verifier:
   name: inspec
 
+transport:
+  username: peterson
+  ssh_key:
+    - ~/.ssh/google_compute_engine
+
 platforms:
   - name: ubuntu-16.04
-  #- name: centos-7.2
-
+    driver:
+      image_project: ubuntu-os-cloud
+      image_family: ubuntu-1604-lts
+      metadata:
+        application: ubuntu
+        release: a
+        version: 1604
+  # - name: centos-7
+  #   driver:
+  #     image_project: centos-cloud
+  #     image_name: centos-7-v20170124
+  #     metadata:
+  #       application: centos
+  #       release: a
+  #       version: 7
+  # - name: windows
+  #   driver:
+  #     image_project: windows-cloud
+  #     image_name: windows-server-2012-r2-dc-v20170117
+  #     disk_size: 50
+  #     metadata:
+  #       application: windows
+  #       release: a
+  #       version: cloud
 suites:
   - name: default
     run_list:
