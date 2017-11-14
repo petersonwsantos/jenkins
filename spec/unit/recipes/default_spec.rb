@@ -1,11 +1,7 @@
 #
 # Cookbook Name:: jenkins
 # Spec:: default
-# ? respec init
-
-# cat jenkins/spec/spec_helper.rb
-# require 'chefspec'
-# require 'chefspec/berkshelf' 
+ 
 require 'spec_helper'
 
 describe 'jenkins::default' do
@@ -38,12 +34,3 @@ describe 'jenkins::default' do
   end
 
 end
-
-# $ chef exec rspec -bc -f d
-#
-# jenkins::default
-#   installs Jenkins
-#   user Jenkins
-#
-# Finished in 1.22 seconds (files took 3.39 seconds to load)
-# 2 examples, 0 failures
